@@ -60,7 +60,7 @@ fi
 # ── Download + verify ─────────────────────────────────────────────────────────
 
 TMP_DIR="$(mktemp -d)"
-trap 'rm -rf "$TMP_DIR"' EXIT
+trap '/bin/rm -rf "$TMP_DIR"' EXIT
 
 zip_path="$TMP_DIR/${APP_NAME}-${arch}.zip"
 sha_path="$TMP_DIR/${APP_NAME}-${arch}.zip.sha256"
@@ -88,15 +88,15 @@ fi
 # right-click-Open or System Settings step needed on first launch.
 
 echo "Installing to $INSTALL_DIR..."
-rm -rf "$INSTALL_DIR/${APP_NAME}.app"
+/bin/rm -rf "$INSTALL_DIR/${APP_NAME}.app"
 if ! ditto -x -k "$zip_path" "$INSTALL_DIR" 2>/tmp/surface-install-err.$$; then
     echo "Failed to extract to $INSTALL_DIR — do you have write access there? Try:" >&2
     echo "  SURFACE_INSTALL_DIR=\"\$HOME/Applications\" $0" >&2
     cat /tmp/surface-install-err.$$ >&2
-    rm -f /tmp/surface-install-err.$$
+    /bin/rm -f /tmp/surface-install-err.$$
     exit 1
 fi
-rm -f /tmp/surface-install-err.$$
+/bin/rm -f /tmp/surface-install-err.$$
 
 echo ""
 echo "$APP_NAME installed: $INSTALL_DIR/${APP_NAME}.app"

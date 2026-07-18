@@ -73,6 +73,10 @@ fi
 
 if download_file "$BASE_URL/${APP_NAME}-${arch}.zip.sha256" "$sha_path" 2>/dev/null; then
     expected="$(cut -d' ' -f1 "$sha_path")"
+    # Deliberately not sourcing scripts/lib/checksum.sh (build.sh's own
+    # checksum helper) — this file has to stay a single self-contained
+    # script, it's fetched standalone from the public releases repo (see
+    # the top-of-file note) with no access to this private repo's scripts/.
     actual="$(shasum -a 256 "$zip_path" | cut -d' ' -f1)"
     if [ "$expected" != "$actual" ]; then
         echo "Checksum verification failed — the download may be corrupt or tampered with." >&2

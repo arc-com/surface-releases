@@ -104,8 +104,8 @@ fi
 
 echo ""
 echo "$APP_NAME installed: $INSTALL_DIR/${APP_NAME}.app"
-echo "Not code-signed, but launched normally (Finder/Spotlight/Dock) should just"
-echo "work — no Gatekeeper prompt, since this script never triggered quarantine."
+echo "Launched normally (Finder/Spotlight/Dock) should just work — no Gatekeeper"
+echo "prompt, since this script never triggered quarantine."
 echo "If macOS still blocks it, right-click the app -> Open -> Open."
 echo ""
 echo "To update later, just re-run this same command."
